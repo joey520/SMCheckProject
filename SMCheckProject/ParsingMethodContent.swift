@@ -109,8 +109,10 @@ class ParsingMethodContent: NSObject {
                 let prm = MethodParam()
                 prm.name = preTk
                 if prm.name != "" {
-                    uMtdDic[psBrcStep]?.params.append(prm)
-                    uMtdDic[psBrcStep]?.pnameId = (uMtdDic[psBrcStep]?.pnameId.appending("\(prm.name):"))!
+                    var tmpUMtdDic = uMtdDic
+                    tmpUMtdDic[psBrcStep]?.params.append(prm)
+                    tmpUMtdDic[psBrcStep]?.pnameId = (uMtdDic[psBrcStep]?.pnameId.appending("\(prm.name):"))!
+                    uMtdDic = tmpUMtdDic
                 }
             } else if tk == Sb.qM {
                 psCdtTf = true
