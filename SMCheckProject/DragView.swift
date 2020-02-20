@@ -48,10 +48,9 @@ class DragView: NSView {
 //        var files = [URL]()
         var filePath = ""
         if #available(OSX 10.13, *) {
-            if let board = sender.draggingPasteboard.propertyList(forType: .fileURL) as? NSArray {
-                for path in board {
-                    filePath = path as! String
-                }
+            if let board = sender.draggingPasteboard.propertyList(forType: .fileURL) as? String {
+                let fileURL = URL.init(fileURLWithPath: board)
+                filePath = fileURL.standardized.absoluteString
             }
         } else {
             // Fallback on earlier versions
